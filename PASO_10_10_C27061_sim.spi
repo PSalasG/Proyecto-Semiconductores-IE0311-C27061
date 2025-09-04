@@ -1,0 +1,67 @@
+*** SPICE deck for cell PASO_10_10_C27061_sim{lay} from library -IE0311-C27061-II2024
+*** Created on mar nov 19, 2024 19:21:16
+*** Last revised on mar nov 26, 2024 16:20:45
+*** Written on sáb nov 30, 2024 16:06:13 by Electric VLSI Design System, version 9.07
+*** Layout tech: mocmos, foundry MOSIS
+*** UC SPICE *** , MIN_RESIST 4.0, MIN_CAPAC 0.1FF
+***    P-Active:	areacap=0.9FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    N-Active:	areacap=0.9FF/um^2,	edgecap=0.0FF/um,	res=3.0ohms/sq
+***    Polysilicon-1:	areacap=0.1467FF/um^2,	edgecap=0.0608FF/um,	res=6.2ohms/sq
+***    Polysilicon-2:	areacap=1.0FF/um^2,	edgecap=0.0FF/um,	res=50.0ohms/sq
+***    Transistor-Poly:	areacap=0.09FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    Poly-Cut:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=2.2ohms/sq
+***    Active-Cut:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=2.5ohms/sq
+***    Metal-1:	areacap=0.1209FF/um^2,	edgecap=0.1104FF/um,	res=0.078ohms/sq
+***    Via1:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=1.0ohms/sq
+***    Metal-2:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via2:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.9ohms/sq
+***    Metal-3:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via3:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-4:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via4:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-5:	areacap=0.0843FF/um^2,	edgecap=0.0974FF/um,	res=0.078ohms/sq
+***    Via5:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=0.8ohms/sq
+***    Metal-6:	areacap=0.0423FF/um^2,	edgecap=0.1273FF/um,	res=0.036ohms/sq
+***    Hi-Res:	areacap=0.0FF/um^2,	edgecap=0.0FF/um,	res=1.0ohms/sq
+
+*** SUBCIRCUIT -IE0311-C27061-II2024__PASO_10_10_C27061 FROM CELL PASO_10_10_C27061{lay}
+.SUBCKT -IE0311-C27061-II2024__PASO_10_10_C27061 A_C27061 gnd sel sel_b vdd Y_C27061
+Mnmos@0 Y_C27061 sel#0nmos@0_poly-left A_C27061 gnd NMOS L=0.4U W=2U AS=2.2P AD=2.2P PS=6.2U PD=6.2U
+Mpmos@0 Y_C27061 sel_b#0pmos@0_poly-right A_C27061 vdd PMOS L=0.4U W=2U AS=2.2P AD=2.2P PS=6.2U PD=6.2U
+** Extracted Parasitic Capacitors ***
+C0 A_C27061 0 2.421fF
+C1 Y_C27061 0 2.395fF
+C2 sel 0 0.304fF
+C3 sel_b 0 0.299fF
+** Extracted Parasitic Resistors ***
+R0 sel#0nmos@0_poly-left sel#0nmos@0_poly-left##0 7.75
+R1 sel#0nmos@0_poly-left##0 sel#0nmos@0_poly-left##1 7.75
+R2 sel#0nmos@0_poly-left##1 sel 7.75
+R3 sel_b#0pmos@0_poly-right sel_b#0pmos@0_poly-right##0 7.233
+R4 sel_b#0pmos@0_poly-right##0 sel_b#0pmos@0_poly-right##1 7.233
+R5 sel_b#0pmos@0_poly-right##1 sel_b 7.233
+.ENDS -IE0311-C27061-II2024__PASO_10_10_C27061
+
+*** TOP LEVEL CELL: PASO_10_10_C27061_sim{lay}
+XPASO_10_@1 A GND sel sel_b VDD Y -IE0311-C27061-II2024__PASO_10_10_C27061
+** Extracted Parasitic Capacitors ***
+C0 A 0 0.498fF
+C1 Y 0 0.472fF
+C2 GND 0 0.828fF
+C3 sel 0 0.787fF
+C4 sel_b 0 0.813fF
+C5 VDD 0 0.787fF
+** Extracted Parasitic Resistors ***
+
+* Spice Code nodes in cell cell 'PASO_10_10_C27061_sim{lay}'
+* Importa el archivo con los parámetros del proceso
+.include C:\Users\Pablo\Documents\Cursos U\Dispositivos Semiconductores\spice.txt
+* Definición de las fuentes DC
+VVDD VDD 0 DC 5 ; Nodo de VDD que está a 5V
+VGND GND 0 DC 0 ; Nodo de tierra que está a 0V
+Vsel sel 0 PULSE 0 5 0 0.1n 0.1n 7.5n 15n ; Tensión de la entrada sel variable
+Vsel_b sel_b 0 PULSE 5 0 0 0.1n 0.1n 7.5n 15n ; Tensión de la entrada sel_b variable
+Vin A 0 PULSE 0 5 5n 0.1n 0.1n 7.5n 15n ; Tensión de la entrada A variable
+* Análisis de estado transitorio
+.TRAN 0 30n
+.END
